@@ -21,7 +21,7 @@ app.use(cors());
 const PORT = process.env.PORT || 3000;
 const IS_DEV = process.env.IS_DEV;
 
-// API URL : https://imdb-parental-advisory.xsaudahmed.repl.co
+// API URL : https://content-advisory-api.xsaudahmed.repl.co
 
 /**
  * ROUTES
