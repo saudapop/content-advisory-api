@@ -53,14 +53,19 @@ app.post('/findTitles', async (req, res) => {
 });
 
 app.post('/parentalGuide', async (req, res) => {
-  const { titleId } = req.body;
+  try {
+    const { titleId } = req.body;
 
-  const contentAdvisory = await getContentAdvisory(titleId);
+    const contentAdvisory = await getContentAdvisory(titleId);
 
-  if (contentAdvisory.parentalGuide.every((guide) => !guide.entries.length)) {
-    contentAdvisory.selectedTitleURL = contentAdvisoryURL(titleId);
+    if (contentAdvisory.parentalGuide.every((guide) => !guide.entries.length)) {
+      contentAdvisory.selectedTitleURL = contentAdvisoryURL(titleId);
+    }
+    res.send(contentAdvisory);
+  } catch (error) {
+    res.status(404);
+    res.send(error.message);
   }
-  res.send(contentAdvisory);
 });
 
 app.post('/getRatings', async (req, res) => {
